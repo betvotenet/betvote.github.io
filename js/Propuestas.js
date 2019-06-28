@@ -14,5 +14,11 @@ Propuesta("", "", temas.TRANSPORTE, 3, 0),
 Propuesta("", "", temas.TRANSPORTE, 4, 0),
 //
 Propuesta("", "", temas.TRANSPORTE, 5, 0),
+//
+Propuesta("", "", temas.TRANSPORTE, 6, 0),
+//
+Propuesta("", "", temas.TRANSPORTE, 7, 0),
+//
+Propuesta("", "", temas.TRANSPORTE, 8, 0),
 ];
 }
