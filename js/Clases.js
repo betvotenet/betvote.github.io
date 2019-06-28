@@ -33,20 +33,19 @@ function Partido(_codigo, _nombre, _imagen, _color, _address, _bet)
 	return partido;
 }
 
-function Candidato(_codigo, _nombre, _lista, _imagen, _partido, _twitter, _address, _bet, _youtube, _imagen2)
+function Candidato(_codigo, _nombre, _lista, _slug, _partido, _twitter, _address, _bet, _youtube)
 {
 	var candidato = 
 	{
 		codigo:_codigo,
 		nombre: _nombre,
 		lista: _lista,
-		imagen: _imagen,
+		slug: _slug,
 		twitter: _twitter,
 		partido: _partido,
 		address: _address,
 		bet: _bet,
-		youtube: _youtube,
-		imagen2: _imagen2
+		youtube: _youtube
 	}
 	return candidato;
 }

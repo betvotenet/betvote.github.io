@@ -38,10 +38,10 @@
 		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	    <link rel="stylesheet" type="text/css" href="css/main.min.css">
-		<link rel="stylesheet" type="text/css" href="css/styles.min.css">		
+		<link rel="stylesheet" type="text/css" href="css/styles.css">		
 		<link rel="stylesheet" type="text/css" href="css/demo.min.css">
-		<link rel="stylesheet" type="text/css" href="css/style.min.css">
-		<link rel="stylesheet" type="text/css" href="css/custom.min.css">		
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/custom.css">		
 		<noscript>
 		    <link rel="stylesheet" type="text/css" href="css/styleNoJS.min.css" />
 		</noscript>			
@@ -50,14 +50,16 @@
 		<script type="text/javascript" src="https://apis.google.com/js/client.js"></script>		
 		<script type="text/javascript" src="js/modernizr.custom.79639.min.js"></script>
 		<script type="text/javascript" src="js/Utilities.min.js"></script>
-		<script type="text/javascript" src="js/Clases.min.js"></script>
-		<script type="text/javascript" src="js/Templates.min.js"></script>
-		<script type="text/javascript" src="js/Candidatos.min.js"></script>
-		<script type="text/javascript" src="js/Partidos.min.js"></script>
-		<script type="text/javascript" src="js/Bets.min.js"></script>				
+		<script type="text/javascript" src="js/Clases.js"></script>
+		<script type="text/javascript" src="js/qrcode.min.js"></script>
+		<script type="text/javascript" src="js/Templates.js"></script>
+		<script type="text/javascript" src="js/Candidatos.js"></script>
+		<script type="text/javascript" src="js/Partidos.js"></script>
+		<script type="text/javascript" src="js/Bets.js"></script>				
 		<script type="text/javascript" src="js/Propuestas.min.js"></script>
-		<script type="text/javascript" src="js/javascript.min.js"></script>
+		<script type="text/javascript" src="js/javascript.js"></script>
 		<script type="text/javascript" src="js/jquery.ba-hashchange.min.js"></script>	
+		
 	    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	    <!--[if lt IE 9]>
 	      <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -65,7 +67,17 @@
 	    <![endif]-->
 		<script language="javascript" type="application/javascript">
 			$(document).ready(function(e) {
-				CargarCandidatos();
+				candidatos.forEach((candidato,index)=>{
+					$("#slider .sl-slider").append(`
+					<div id="${candidato.slug}" class="sl-slide bg-${index}" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
+						<div class="sl-slide-inner">
+							<div class="deco" data-icon=""></div>
+							<blockquote><p><b class="bet${address[index]}"></b></p></blockquote>
+						</div>
+					</div>
+					`);
+					$(`.demo-1 .bg-${index} .sl-slide-inner , .demo-1 .bg-${index} .sl-content-slice`).css("background-image",`url('./img/${candidato.slug}_lo.jpg')`);
+				});
 				CargarPartidos();
 			    CargarPropuestas();
 				candidatos = shuffle(candidatos);
@@ -77,8 +89,6 @@
 				};
 			});
 		</script>
-		<script type="text/javascript">var GETSOCIAL_ID = "d679e9";var GETSOCIAL_LANG = "en"; (function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://api.at.getsocial.io/widget/v1/gs_async.js?id='+GETSOCIAL_ID; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();
-		</script>    
 	</head>
 	<body data-spy="scroll" data-offset="0" data-target="#theMenu">
 		<a href="/"><img class="bet_logo" src="img/logo.png"></a>
@@ -93,52 +103,15 @@
 				<a href="#about" class="smoothScroll">ACERCA DE BETVOTE</a>
 				<a href="http://www.facebook.com/betvote.net" target="_blank"><i class="fa fa-facebook"></i></a>
 				<a href="http://www.twitter.com/betvotenet" target="_blank"><i class="fa fa-twitter"></i></a>
-				<a href="http://www.github.com/betvote" target="_blank"><i class="fa fa-github"></i></a>
+				<a href="http://www.github.com/betvotenet" target="_blank"><i class="fa fa-github"></i></a>
 			</div>	
 			<!-- Menu button -->
 			<div id="menuToggle"><i class="fa fa-reorder"></i></div>
 		</nav>
-		<!--
 	    <div class="container-slider demo-1">
 	        <div id="slider" class="sl-slider-wrapper">
 	            <div class="sl-slider">
-	                <div id="MauricioMacri" class="sl-slide bg-3" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
-	                    <div class="sl-slide-inner">
-	                        <div class="deco" data-icon=""></div>
-	                        <blockquote><p><b class="bet1J6LQKpcYTN5EEs9Ly1sEmNbWx6MFZ4NVT"></b></p></blockquote>
-	                    </div>
-	                </div>
-	                <div id="SergioMassa" class="sl-slide bg-12" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-	                    <div class="sl-slide-inner">
-	                        <div class="deco" data-icon=""></div>
-	                        <blockquote><p><b class="bet1NbYpjej4tUG1LoXNcaHXEAv2BrNaE3Qn8"></b></p></blockquote>
-	                    </div>
-	                </div>
-	                <div id="DanielScioli" class="sl-slide bg-7" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-	                    <div class="sl-slide-inner">
-	                        <div class="deco" data-icon=""></div>
-	                        <blockquote><p><b class="bet1MKxXQvNjS78WaeZniUBKB5hbGwDSPzBTt"></b></p></blockquote>
-	                    </div>
-	                </div>                                
-	                <div id="NicolásdelCaño" class="sl-slide bg-6" data-orientation="horizontal" data-slice1-rotation="-25" data-slice2-rotation="-25" data-slice1-scale="2" data-slice2-scale="2">
-	                    <div class="sl-slide-inner">
-	                        <div class="deco" data-icon=""></div>
-	                        <blockquote><p><b class="bet14ABDAcQ5vXQkKpmNHZfzEb8Ki1Thrr7gy"></b></p></blockquote>
-	                    </div>
-	                </div>
-	                <div id="MargaritaStolbizer" class="sl-slide bg-10" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-	                    <div class="sl-slide-inner">
-	                        <div class="deco" data-icon=""></div>
-	                        <blockquote><p><b class="bet15idxQtkbpox9xKDQGxqjoqiqpWMEeTwgJ"></b></p></blockquote>
-	                    </div>
-	                </div>  
-	                <div id="AdolfoRodríguezSaá" class="sl-slide bg-4" data-orientation="horizontal" data-slice1-rotation="3" data-slice2-rotation="3" data-slice1-scale="2" data-slice2-scale="1">
-	                    <div class="sl-slide-inner">
-	                        <div class="deco" data-icon=""></div>
-	                        <blockquote><p><b class="bet1KnApPxStmyPds8ngsbPm8KFDRB2Rcvt9r"></b></p></blockquote>
-	                    </div>
-	                </div>
-	            </div>
+	            </div><!-- /sl-slider -->
 	            <nav id="nav-arrows" class="nav-arrows">
 	                <span class="nav-arrow-prev">Previous</span>
 	                <span class="nav-arrow-next">Next</span>
@@ -149,14 +122,13 @@
 	                <span></span>
 	                <span></span>
 	                <span></span>
-	                <span></span>                              
+					<span></span>
+					<span></span>
+					<span></span>
+					<span></span>
 	            </nav>
-	        </div>
-	    </div>
-	    -->
-	    <!-- /sl-slider -->
-		<!-- /slider-wrapper -->
-	    <!-- /container demo-1-->
+	        </div><!-- /slider-wrapper -->
+	    </div><!-- /container demo-1-->
 		<!-- ========== WHITE SECTION ========== -->
 		<div id="w">
 			<div class="container">
@@ -167,23 +139,11 @@
 				</div>
 			</div><!-- /container -->
 		</div><!-- /w -->
-		<div id="zz">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-8 col-lg-offset-2">
-					<p>APUESTA #BV-AR-001</p>
-						<h4>Las apuestas se encuentran cerradas. Los resultados, ganadores y envío de premios de la <b>APUESTA #BV-AR-001</b>, serán publicados en este sitio web el día sábado 2 de enero de 2016. Muchas gracias a todos los que participaron y a los medios periodísticos como Bloomberg, El Cronista Comercial, Revista Fortuna que difundieron este proyecto.</h4>
-					</div>
-				</div>
-			</div><!-- /container -->
-		</div><!-- /w -->
-		<!--
 		<div id="contenido" class="mainContainer">
 	    	<div class="contentContainer">
 	        </div>
 	        <div class="getsocial gs-inline-group"></div>
 	    </div>
-	    -->
 	    <div style="display:none;" id="shortener"></div>	     	
 		<!-- ========== SERVICES - GREY SECTION ========== -->
 		<section id="services" name="bet"></section>
@@ -270,7 +230,7 @@
 							<p class="social_p">
 								<a href="http://www.facebook.com/betvote.net" target="_blank"><i class="fa fa-facebook"></i></a>
 								<a href="http://www.twitter.com/betvotenet" target="_blank"><i class="fa fa-twitter"></i></a>
-								<a href="http://www.github.com/betvote" target="_blank"><i class="fa fa-github"></i></a>
+								<a href="http://www.github.com/betvotenet" target="_blank"><i class="fa fa-github"></i></a>
 								<a href="http://betvote.tumblr.com" target="_blank"><i class="fa fa-tumblr"></i></a>
 							</p>
 							<br>

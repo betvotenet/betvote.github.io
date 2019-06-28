@@ -1,43 +1,65 @@
+CargarCandidatos();
 // START ADDRESSES
-var address_a = "1MKxXQvNjS78WaeZniUBKB5hbGwDSPzBTt"; // SCIOLI
-var address_b = "1J6LQKpcYTN5EEs9Ly1sEmNbWx6MFZ4NVT"; // MACRI
+var address=[];
+address[0] = candidatos[0].address; // FERNANDEZ
+address[1] = candidatos[1].address; // MACRI
+address[2] = candidatos[2].address; // LAVAGNA
+address[3] = candidatos[3].address; // DEL CANO 
+address[4] = candidatos[4].address; // Castiñeira
+address[5] = candidatos[5].address; // ESPERT
+address[6] = candidatos[6].address; // CENTURION
+address[7] = candidatos[7].address; // BIONDINI
+address[8] = candidatos[8].address; // FERIS
+
 // END ADDRESSES
 
 // START BETS
-var bet_a_html = "";
-var bet_b_html = "";
+var bet_html = [];
+bet_html[0] = bet_html[1] = bet_html[2] = bet_html[3] = bet_html[4] = bet_html[5] = bet_html[6] = bet_html[7] = bet_html[8] = "";
 // END BETS
 
-var addresses_query = address_a+"|"+address_b;
+var addresses_query = address.join(",");
 
-function CargarBets() {
+function api_callback(response) {
+	var data = response.data;
 
-$.getJSON("https://blockchain.info/multiaddr?cors=true&api_code=0fe3c82d-156d-405e-b8d4-eff695003036&active="+addresses_query, function (data) {
+	var balance = [];
+	address.forEach((addr,index)=>{
+		balance[index] = data ? data.addresses[addr].received : 0;
+	});
 
- 	var data = data;
+	// array sum
+	var total_balance_candidates = balance.reduce((a, b) => a + b, 0);
 
-	var balance_a = data.addresses[0].total_received;
-	var balance_b = data.addresses[1].total_received;
-
-	var total_balance_candidates = balance_a+balance_b;
-
-	var profit = 0.65;
+	var profit = 0.99;
 	var satoshi = 100000000;
 
-	var bet_a = (total_balance_candidates / balance_a * profit) / (2 / 100 * 25);
-	var bet_b = (total_balance_candidates / balance_b * profit) / (2 / 100 * 75);
-    
-	if (bet_a < 1) {
-		bet_a = 1;
-	}
-	if (bet_b < 1) {
-		bet_b = 1;
-	}
+	var bet = [];
+	address.forEach((addr,index)=>{
+		bet[index] = balance[index] ? ( total_balance_candidates / balance[index] ) * profit : 1;
+	});
 
-	var bet_a_html = bet_a.toFixed(2)+" X";
-	var bet_b_html = bet_b.toFixed(2)+" X";
+	bet.map((b,index)=>{ return b < 1 ? 1 : b });
 
-	$(".bet"+address_a).html(bet_a_html);
-	$(".bet"+address_b).html(bet_b_html);
-});
+	bet_html.forEach((b_html,index)=>{
+		bet_html[index] = bet[index].toFixed(2)+" X";
+	});
+
+	address.forEach((addr,index)=>{
+		$(".bet"+address[index]).html(bet_html[index]);
+	});
+}
+
+api_promise = null;
+function CargarBets() {
+	if(!api_promise)
+		api_promise = new Promise((resolve,reject)=>{
+			$.getJSON("https://api.blockchair.com/bitcoin/dashboards/addresses/"+addresses_query)
+			.done(resolve)
+			.fail(reject);
+		})
+	api_promise
+		.then(api_callback)
+		.catch(api_callback)
+
 }

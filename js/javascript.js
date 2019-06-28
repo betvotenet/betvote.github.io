@@ -14,6 +14,27 @@ function ToggleCategoria(boton)
 	contenedorPropuestas.slideToggle('fast');
 }
 
+function stylize_address(address) {
+	var candName = address.slice(4,12);
+	var address_without_bc1qCandName = address.slice(12,address.length);
+	var address_without_bc1qCandName_splitted_each_3 = address_without_bc1qCandName.match(/.{1,3}/g);
+	//arr.splice(index, 0, item)
+	address_without_bc1qCandName_splitted_each_3.splice(0, 0, "bc1q");
+	var elements = [];
+	address_without_bc1qCandName_splitted_each_3.forEach((chunk)=>{
+		var span = document.createElement('span');
+		$(span).addClass('address_style');
+		$(span).html(chunk);
+		elements.push(span.outerHTML);
+	})
+	var span = document.createElement('span');
+	$(span).addClass('address_style');
+	$(span).addClass('address_style address_style_name');
+	$(span).html(candName);
+	elements.splice(1, 0, span.outerHTML);
+	return elements.join("");
+}
+
 function MostrarCandidato(modo, cand)
 {
 	switch(modo)
@@ -35,7 +56,7 @@ function MostrarCandidato(modo, cand)
 
 			var imagen = document.createElement('div');
 			$(imagen).addClass('imagenCandidato');
-			$(imagen).css('background-image', 'url(' + cand.imagen + ')');
+			$(imagen).css('background-image', 'url(img/candidates/' + cand.slug + '.jpg)');
 			$(container).append(imagen);
 
 			var cont = document.createElement('div');
@@ -47,6 +68,7 @@ function MostrarCandidato(modo, cand)
 			var nombre = document.createElement('div');
 			$(nombre).addClass('nombreCandidato');
 			$(nombre).html(cand.nombre);
+
 			$(cont).append(nombre);
 
 			var part = partidos.filter(function(e){return e.codigo == cand.partido;})[0];
@@ -58,9 +80,9 @@ function MostrarCandidato(modo, cand)
 
 			var address = document.createElement('div');
 			$(address).addClass('addressCandidato bet_temp');
-			$(address).attr( "data-xbt-address", ""+cand.address+"" );
-			$(address).css('color', cand.color);			
-			$(address).html(cand.address+'<img class="qr_cand" src="img/qr/' + cand.address + '.png">');
+			$(address).css('color', cand.color);
+			$(address).html(stylize_address(cand.address)+'<a href="bitcoin:'+cand.address+'">'+`<div class="qr_cand" id="qr_${cand.address}"></div></a>`);
+
 			$(cont).append(address);
 
 			var bet = document.createElement('div');
@@ -75,13 +97,12 @@ function MostrarCandidato(modo, cand)
 			$(bet_now_container).css('background-color', part.color);
 			$(cont).append(bet_now_container);	
 			*/
-			
-			$(cont).append('<img class="partie_logo_temp" src="' + part.imagen + '">');
 
 			/*
 			$("#"+cand.nombre).append('<img src="' + part.imagen + '">');
 			*/
 			$(container).append(cont);
+			$(container).append('<img class="partie_logo_temp" src="' + part.imagen + '">');
 			CargarBets();
 		}break;
 		case 1:
@@ -92,20 +113,28 @@ function MostrarCandidato(modo, cand)
 				
 				cont.append(MostrarVolver(0, partidos.filter(function(e){ return e.codigo == cand.partido; })[0]));
 				cont.append(HeaderCandidato(cand));
-				
 				cont.append(MostrarContenedor(contenedores.PROPUESTAS));
 				
 				propuestas.filter(function(a){return a.candidato == cand.codigo && a.partido == cand.partido}).forEach(function(prop)
 				{
 					MostrarPropuesta(0, prop);
 				});
-
-            }).fadeIn('300ms').animate({marginTop:'0px'},'300ms');
+            }).fadeIn('300ms').animate({marginTop:'0px'},'300ms', ()=> {
+				new QRCode(document.getElementById("qr_"+cand.address), {
+					text: "bitcoin:"+cand.address,
+					width: 170,
+					height: 170,
+					colorDark : "#000000",
+					colorLight : "#ffffff",
+					correctLevel : QRCode.CorrectLevel.L
+				});
+			});
 			$('html, body').animate({
 		        scrollTop: cont.offset().top
-		    }, 500);
+			}, 500);
 			CambiarURL(1, cand);
-		}break;
+		}
+		break;
 
 		case 2:
 		{
@@ -123,18 +152,18 @@ function MostrarCandidato(modo, cand)
 			$(container).append(color);
 
 			var reemplazo = cand.nombre.replace(/ /g,'');
-			$("#"+reemplazo).click(function(){
+			//$("#"+reemplazo).click(function(){
+			$("#"+cand.slug).click(function(){
 				MostrarCandidato(1, cand)
-			});		
+			});
 
 			var imagen = document.createElement('div');
 			$(imagen).addClass('imagenCandidato_mini');
-			$(imagen).css('background-image', 'url(' + cand.imagen + ')');
+			$(imagen).css('background-image', 'url(img/candidates/' + cand.slug + '.jpg)');
 			$(container).append(imagen);
 
 			var address = document.createElement('div');
 			$(address).addClass('addressCandidato');
-			$(address).attr( "data-xbt-address", ""+cand.address+"" );
 			$(address).css('color', cand.color);			
 			$(address).html(cand.address);
 			$(cont).append(address);
@@ -390,7 +419,18 @@ function CargaInicial()
 		partidos.forEach(function(part) {MostrarPartido(0, part);});
 		candidatos.forEach(function(cand) {MostrarCandidato(0, cand);});
 		propuestas.forEach(function(prop) {MostrarPropuesta(0, prop);});
-    }).fadeIn('300ms').animate({marginTop:'0px'},'300ms').animate({scrollTop:200}, '300');
+    }).fadeIn('300ms').animate({marginTop:'0px'},'300ms').animate({scrollTop:200}, '300', ()=> {
+		candidatos.forEach((cand)=>{
+			new QRCode(document.getElementById("qr_"+cand.address), {
+				text: "bitcoin:"+cand.address,
+				width: 170,
+				height: 170,
+				colorDark : "#000000",
+				colorLight : "#ffffff",
+				correctLevel : QRCode.CorrectLevel.L
+			});
+		})
+	});
 	$('html, body').animate({
 		scrollTop: 0
 	}, 500);

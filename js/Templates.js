@@ -5,7 +5,7 @@ function MostrarContenedor(tipo)
 	{
 		case contenedores.CANDIDATOS:
 			template = "<div class='candidatosContainer'>"+
-            	"<div class='title'><b>Candidatos a Presidentes de la Nación</b><br><span class='cluf'><b>APUESTA #BV-AR-001:</b> ¿Quién será el presidente de la República Argentina el 1 de enero de 2016?</span></div>"+
+            	"<div class='title'><b>Candidatos a Presidentes de la Nación</b><br><span class='cluf'><b>APUESTA #BV-AR-002:</b> ¿Quién será el presidente de la República Argentina el 1 de enero de 2020?</span></div>"+
 				"</div> ";
 			break;
 		/*	
@@ -25,7 +25,7 @@ function HeaderCandidato(cand)
 	
 	var imagen = document.createElement('div');
 	$(imagen).addClass('imagenCandidato');
-	$(imagen).css('background-image', 'url(' + cand.imagen2 + ')');
+	$(imagen).css('background-image', 'url(img/candidates/' + cand.slug + '2.jpg)');
 	// $(imagen).append('<div class="share-icons"><a href="javascript:twShare(&#39;'+window.location+'&#39;, &#39;¡Apostá por '+cand.nombre+' '+cand.twitter+'!&#39;, &#39;elecciones&#39;, &#39;'+cand.imagen2+'#39;, 520, 350)"><img src="img/share/tw.png"></a><a href="javascript:fbShare(&#39;'+window.location+'&#39;, &#39;¡Apostá por '+cand.nombre+' '+cand.twitter+'!&#39;, &#39;&#39;, &#39;'+cand.imagen2+'&#39;, 520, 350)"><img src="img/share/fb.png"></a></div>');
 	$(container).append(imagen);	 
 
@@ -48,7 +48,7 @@ function HeaderCandidato(cand)
 
 	var address = document.createElement('div');
 	$(address).addClass('addressCandidato');
-	$(address).html('<a href="bitcoin:'+cand.address+'">'+cand.address+'</a>'+'<br>'+'<a href="bitcoin:'+cand.address+'">'+'<img class="qr_cand" src="img/qr/' + cand.address + '.png">'+'</a>');
+	$(address).html('<a class="justAddress" href="bitcoin:'+cand.address+'">'+stylize_address(cand.address)+'</a>'+'<br>'+'<a href="btc:'+cand.address+'">'+`<div class="qr_cand" id="qr_${cand.address}"></div></a>`);
 	$(cont).append(address);
 
 	var bet = document.createElement('div');
@@ -73,7 +73,7 @@ function HeaderPartido(part)
 	
 	var imagen = document.createElement('div');
 	$(imagen).addClass('imagenPartido_Header');
-	$(imagen).css('background-image', 'url(' + part.imagen + ')');
+	$(imagen).css('background-image', 'url(img/candidates/' + cand.slug + '.jpg)');
 	$(imagen).html('<img class="qr_part" src="img/qr/' + part.address + '.png">');	
 	var bet = document.createElement('div');
 	$(bet).attr('class', 'bet'+part.address+'');	

@@ -1067,7 +1067,7 @@ text-align: center;
 
 @media (width: 320px)  {
 	*{
-		zoom:.965 !important;
+		/*zoom:.965 !important;*/
 	}
 	.footerContainer{
 		zoom:.7 !important;
@@ -1117,7 +1117,9 @@ text-align: center;
 	.iconoAbout{
 		zoom:.8 !important;
 	}
-
+	.justAddress {
+		zoom:.7 !important;
+	}
 }
 
 @media (max-width: 600px)  {
