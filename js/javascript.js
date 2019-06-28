@@ -81,7 +81,7 @@ function MostrarCandidato(modo, cand)
 			var address = document.createElement('div');
 			$(address).addClass('addressCandidato bet_temp');
 			$(address).css('color', cand.color);
-			$(address).html(stylize_address(cand.address)+'<a href="bitcoin:'+cand.address+'">'+`<div class="qr_cand" id="qr_${cand.address}"></div></a>`);
+			$(address).html(stylize_address(cand.address)+''+`<div class="qr_cand" id="qr_${cand.address}"></div>`);
 
 			$(cont).append(address);
 
