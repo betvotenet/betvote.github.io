@@ -1084,9 +1084,9 @@ text-align: center;
 }
 
 @media (width: 360px)  {
-	*{
+	/* *{
 		zoom:.975 !important;
-	}
+	}*/
 
 	.headerContainer{
 		height: 235px !important;
