@@ -30,7 +30,7 @@ function HeaderCandidato(cand)
 	$(container).append(imagen);	 
 
 	var cont = document.createElement('div');
-	$(cont).css('display', 'inline-block');
+	$(cont).css('display', 'block');
 	$(cont).css('vertical-align', 'top');
 	$(cont).css('margin', '6px 0');
 	
@@ -54,7 +54,9 @@ function HeaderCandidato(cand)
 	var bet = document.createElement('div');
 	$(bet).attr('class', 'bet'+cand.address+'');
 	$(address).append(bet);
-	// $(cont).append('<div class="getsocial gs-inline-group"></div>');
+	var balance = document.createElement('div');
+	$(balance).attr('class', "balance"+cand.address+" text-center");
+	$(address).append(balance);
 	$(container).append(cont);
 
 	var youtube = document.createElement('div');

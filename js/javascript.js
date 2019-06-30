@@ -90,6 +90,11 @@ function MostrarCandidato(modo, cand)
 			$(address).append(bet);
 			$(cont).append(bet);
 
+			var balance = document.createElement('div');
+			$(balance).addClass("balance"+cand.address+" bet_temp text-center");
+			//$(address).append(balance);
+			$(cont).append(balance);
+
 			/*
 			var bet_now_container = document.createElement('div');
 			$(bet_now_container).addClass('bet-now');
@@ -103,7 +108,7 @@ function MostrarCandidato(modo, cand)
 			*/
 			$(container).append(cont);
 			$(container).append('<img class="partie_logo_temp" src="' + part.imagen + '">');
-			CargarBets();
+			//CargarBets();
 		}break;
 		case 1:
 		{
@@ -128,6 +133,7 @@ function MostrarCandidato(modo, cand)
 					colorLight : "#ffffff",
 					correctLevel : QRCode.CorrectLevel.L
 				});
+				CargarBets();
 			});
 			$('html, body').animate({
 		        scrollTop: cont.offset().top
@@ -181,7 +187,7 @@ function MostrarCandidato(modo, cand)
 			$(cont).append(nombre);
 			$(container).append(nombre);
 			
-						CargarBets();
+						//CargarBets();
 
 			return container;
 		}break;
@@ -430,6 +436,7 @@ function CargaInicial()
 				correctLevel : QRCode.CorrectLevel.L
 			});
 		})
+		CargarBets();
 	});
 	$('html, body').animate({
 		scrollTop: 0

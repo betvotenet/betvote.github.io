@@ -25,7 +25,7 @@ function api_callback(response) {
 
 	var balance = [];
 	address.forEach((addr,index)=>{
-		balance[index] = data ? data.addresses[addr].received : 0;
+		balance[index] = data && data.addresses[addr] ? data.addresses[addr].received : 0;
 	});
 
 	// array sum
@@ -36,30 +36,31 @@ function api_callback(response) {
 
 	var bet = [];
 	address.forEach((addr,index)=>{
-		bet[index] = balance[index] ? ( total_balance_candidates / balance[index] ) * profit : 1;
+		bet[index] = total_balance_candidates != 0 ? ( total_balance_candidates / balance[index] ) * profit : 1;
 	});
 
 	bet.map((b,index)=>{ return b < 1 ? 1 : b });
 
 	bet_html.forEach((b_html,index)=>{
-		bet_html[index] = bet[index].toFixed(2)+" X";
+		if(bet[index] != Infinity)
+			bet_html[index] = bet[index].toFixed(2)+" X";
+		else
+			bet_html[index] = "-";
 	});
 
 	address.forEach((addr,index)=>{
 		$(".bet"+address[index]).html(bet_html[index]);
+		$(".balance"+address[index]).html(balance[index]/100000+" mBTC <br>vs<br> "+(total_balance_candidates-balance[index])/100000+" mBTC");
 	});
+
+	$(".candidatosContainer div.title").after("<div><strong>Pozo total: "+total_balance_candidates/100000+" mBTC</strong></div>")
 }
 
 api_promise = null;
 function CargarBets() {
-	if(!api_promise)
-		api_promise = new Promise((resolve,reject)=>{
-			$.getJSON("https://api.blockchair.com/bitcoin/dashboards/addresses/"+addresses_query)
-			.done(resolve)
-			.fail(reject);
-		})
-	api_promise
-		.then(api_callback)
-		.catch(api_callback)
-
+	api_promise = new Promise((resolve,reject)=>{
+		$.getJSON("https://api.blockchair.com/bitcoin/dashboards/addresses/"+addresses_query)
+		.done(resolve)
+		.fail(reject);
+	}).then(api_callback).catch(api_callback)
 }
