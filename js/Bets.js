@@ -31,12 +31,12 @@ function api_callback(response) {
 	// array sum
 	var total_balance_candidates = balance.reduce((a, b) => a + b, 0);
 
-	var profit = 0.99;
+	//var profit = 0.99;
 	var satoshi = 100000000;
 
 	var bet = [];
 	address.forEach((addr,index)=>{
-		bet[index] = total_balance_candidates != 0 ? ( total_balance_candidates / balance[index] ) * profit : 1;
+		bet[index] = total_balance_candidates != 0 ? ( total_balance_candidates / balance[index] ) : 1;
 	});
 
 	bet.map((b,index)=>{ return b < 1 ? 1 : b });
