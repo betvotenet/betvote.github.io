@@ -3,9 +3,9 @@
 	<head>
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" pcontent="Apostá por los candidatos a Presidente de la Nación Argentina en 2020" />
+		<meta name="description" pcontent="Apostá por los candidatos a Presidente de la Nación Argentina" />
 	    <meta name="author" content="BV">
-		<meta name="keywords" pcontent="propuestas, candidatos, partidos, frentes, elecciones, 2020, presidente, argentina" />	    
+		<meta name="keywords" pcontent="propuestas, candidatos, partidos, frentes, elecciones, presidente, argentina" />	    
 		<link rel="apple-touch-icon" sizes="57x57" href="img/ico/apple-icon-57x57.png">
 		<link rel="apple-touch-icon" sizes="60x60" href="img/ico/apple-icon-60x60.png">
 		<link rel="apple-touch-icon" sizes="72x72" href="img/ico/apple-icon-72x72.png">
@@ -19,7 +19,7 @@
 		<link rel="icon" type="image/png" sizes="32x32" href="img/ico/favicon-32x32.png">
 		<link rel="icon" type="image/png" sizes="96x96" href="img/ico/favicon-96x96.png">
 		<link rel="icon" type="image/png" sizes="16x16" href="img/ico/favicon-16x16.png">
-		<link rel="manifest" href="img/ico/manifest.json">
+		<link rel="manifst" href="img/ico/manifest.json">
 		<meta name="msapplication-TileColor" content="#ffffff">
 		<meta name="msapplication-TileImage" content="img/ico/ms-icon-144x144.png">
 		<meta name="theme-color" content="#ffffff">
@@ -27,7 +27,7 @@
 		<meta property="og:title" content="Apostá tu voto | betvote.net"/>
 		<meta property="og:url" content="http://betvote.net"/>
 		<meta property="og:site_name" content="BetVote.net | Apostá tu voto"/>
-		<meta property="og:description" content="Apostá por los candidatos a Presidente de la Nación Argentina en 2020"/>
+		<meta property="og:description" content="Apostá por los candidatos a Presidente de la Nación Argentina"/>
 		<meta property="og:type" content="website"/>	    
 		<title>Apuestas electorales - betvote.net</title>
 	    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">		
@@ -56,7 +56,7 @@
 		<script type="text/javascript" src="js/Candidatos.js"></script>
 		<script type="text/javascript" src="js/Partidos.js"></script>
 		<script type="text/javascript" src="js/Bets.js"></script>				
-		<script type="text/javascript" src="js/Propuestas.min.js"></script>
+		<script type="text/javascript" src="js/Propuestas.js"></script>
 		<script type="text/javascript" src="js/javascript.js"></script>
 		<script type="text/javascript" src="js/jquery.ba-hashchange.min.js"></script>	
 		
@@ -126,6 +126,7 @@
 					<span></span>
 					<span></span>
 					<span></span>
+					<span></span>
 	            </nav>
 	        </div><!-- /slider-wrapper -->
 	    </div><!-- /container demo-1-->
@@ -156,27 +157,31 @@
 					<div class="col-lg-3 faq-btc">
 						<img src="img/btc/bitcoin12.png" class="how-to">
 						<h4><b>Hazte de bitcoins</b></h4>
-						<p>Puedes comprar bitcoins de forma fácil, segúra, rápida, y con pesos argentinos en <a href="https://www.ripio.com/es/" target="_blank"><b>Ripio</b></a>, <a href="https://bitex.la/" target="_blank"><b>Bitex</b></a>, <a href="https://localbitcoins.com/country/AR" target="_blank"><b>Local Bitcoins</b></a> y <a href="https://satoshitango.com" target="_blank"><b>SatoshiTango</b>.</a><br>
+						<p>Puedes comprar bitcoins de forma fácil, segúra, rápida, y con pesos argentinos en <a href="https://satoshitango.com" target="_blank"><b>SatoshiTango</b></a>, <a href="https://www.qubit.com.ar/" target="_blank"><b>Qubit Brokers</b></a>, <a href="https://localbitcoins.com/country/AR" target="_blank"><b>Local Bitcoins</b></a><br>
+						<strong style="color: #ff005a">Los exchanges/brokers <u>NO</u> son monederos de bitcoins, por lo que usarlos con BetVote ocasionará la pérdida de tu apuesta</strong><br>
+						Antes de participar, almacena los bitcoins que compres en un monedero (<a href="https://electrum.org/#download" target="_blank"><b>Electrum</b></a>, <a href="https://www.coinomi.com/en/downloads/" target="_blank"><b>Coinomi</b></a>, <a href="https://wasabiwallet.io/" target="_blank"><b>Wasabi</b></a>)<br>
 						</p>
 					</div>
 					<div class="col-lg-3 faq-btc">
 						<img src="img/btc/bitcoin22.png" class="how-to">
 						<h4><b>Elije a tu candidato</b></h4>
-						<p>Por coeficiente de apuesta (X), plataforma electoral, afinidad ideológica, probabilidades de ganar, valores, prontuario, etc.</p>
+						<p>Por coeficiente de apuesta (X), plataforma electoral, afinidad ideológica, probabilidades de ganar, valores, prontuario, etc.<br>
+						<strong style="color: #ff005a">Los coeficientes son dinámicos</strong> <a href="#info">(?)</a></strong></p>
 					</div>
 					<div class="col-lg-3 faq-btc">
 						<img src="img/btc/bitcoin63.png" class="how-to">
 						<h4><b>Envia tu apuesta</b></h4>
-						<p>Puedes utilizar el QR o la bitaddress de cada candidato. No hay montos mínimos ni máximos. <b style="color: #ff005a">NO UTILICES DIRECCIONES DE "ÚNICA VEZ" NI ENVÍES DESDE EXCHANGES</b>.</p>
+						<p>Puedes utilizar el QR o la dirección bitcoin de cada candidato. No hay montos mínimos ni máximos. <br><b style="color: #ff005a">NO ENVÍES DESDE EXCHANGES.<br>Debes tener posesión de la dirección bitcoin de origen.<br>Caso contrario tu apuesta se perderá.</b><br>
+						Para tener posesión de la dirección de origen, debes tener tus bitcoins almacenados en un monedero (<a href="https://electrum.org/#download" target="_blank"><b>Electrum</b></a>, <a href="https://www.coinomi.com/en/downloads/" target="_blank"><b>Coinomi</b></a>, <a href="https://wasabiwallet.io/" target="_blank"><b>Wasabi</b></a>)</p>
 					</div>
 					<div class="col-lg-3 faq-btc">
 						<img src="img/btc/bitcoin18.png" class="how-to">
 						<h4><b>Ganadores</b></h4>
-						<p>Si resultas ganador, el premio (Apuesta x Coeficiente FINAL - TX Fee) te será enviado a la dirección de origen.</p>
+						<p>Si resultas ganador, el premio (Apuesta x Coeficiente FINAL - TX Fee) <a href="#info">(?)</a> te será enviado a la dirección bitcoin de origen.</p>
 					</div>
 				</div>
 				<div class="row" style="margin-top:20px;">
-					<p><a href="https://bitcoin.org/es/debes-saber" target="_blank"><b style="color: #ff005a;">Algunas cosas que debes saber a la hora de apostar con bitcoins.</b></a></p>
+					<p><a href="https://bitcoin.org/es/debes-saber" target="_blank"><b style="color: #ff005a;"><u>Algunas cosas que debes saber a la hora de apostar con bitcoins.</u></b></a></p>
 				</div>
 			</div><!-- /container -->
 		</div><!-- /g -->
@@ -197,7 +202,7 @@
 					</div>
 					</div>
 					<div class="about_btc col-lg-12">
-						<p style="margin-top:15px;"><b>Si quieres aprender como empezar a usar Bitcoin visita: <a href="https://bitcoin.org/es/como-empezar" target="_blank">Bitcoin.org</a>, <a href="https://www.acamica.com/cursos/47/bitcoin-en-espanol" target="_blank">Bitcoin en Español en Acamica</a> y  <a href="https://www.facebook.com/groups/BitcoinArg/" target="_blank">Bitcoin-Argentina en Facebook</a>.</b></p>
+						<p style="margin-top:15px;"><b>Si quieres aprender como empezar a usar Bitcoin visita: <a href="https://bitcoin.org/es/como-empezar" target="_blank">Bitcoin.org</a>, <a href="https://medium.com/@franco.amati/bitcoin-qu%C3%A9-c%C3%B3mo-y-para-qu%C3%A9-545b9128d491" target="_blank">"Bitcoin: ¿qué, cómo y para qué?" por Franco Amati</a> y  <a href="https://www.facebook.com/groups/BitcoinArg/" target="_blank">Bitcoin-Argentina en Facebook</a>.</b></p>
 					</div>																
 					</div>
 				</div>
@@ -213,20 +218,23 @@
 					<br>
 					<div class="col-lg-2"></div>
 					<div id="about_bet" class="col-lg-8">
-						<p>Betvote es un experimento que mediante un simple software de lado del cliente conectado mediante API a la tecnologia "Blockchain" intenta analizar el mercado de predicciones electorales de cara a las elecciones presidenciales 2019 en Argentina.</p>
+						<p>Betvote es un experimento que mediante un simple software de lado del cliente conectado mediante API a la tecnologia "Blockchain" intenta analizar el mercado de predicciones electorales de cara a las elecciones presidenciales en Argentina.</p>
 						<br>
 						<br>
 					</div>
 				</div>
 				<div class="row">
-					<h3 class="about_aux">COEFICIENTES, FÓRMULAS Y VIGENCIA</h3>
+					<h3 class="about_aux" id="info">COEFICIENTES, FÓRMULAS, VIGENCIA y PAGOS</h3>
 					<br>
 					<br>
 					<div class="col-lg-2"></div>
 					<div id="about_bet" class="col-lg-8">
-						<p>Los coeficientes exhibidos son <strong>DINÁMICOS</strong> y no <strong>FINALES</strong>, por lo que la ganancia de los apostadores victoriosos se verá afectada mientras las apuestas se mantengan abiertas. Los coeficientes <strong>FINALES</strong> se podrán calcular instantáneamente posterior al cierre de las apuestas.</p>
-						<p>Fórmula: Apuesta x Coeficiente FINAL - TX Fee</p>
-						<p>Las apuestas se cierran al comienzo del 2020 (01/01/2020 00:00 UTC-3)</p>
+						<p>Los <strong>COEFICIENTES</strong> exhibidos son <strong>DINÁMICOS</strong> y no <strong>FINALES</strong>, es decir que mientras las apuestas se mantengan abiertas los coeficientes pueden variar.
+						<br>Los coeficientes <strong>FINALES</strong> se podrán calcular instantáneamente posterior al cierre de las apuestas.</p>
+						<p><strong>Fórmula de distribución</strong>: Apuesta x Coeficiente FINAL - TX Fee<br>
+						<strong>Fórmula de coeficientes</strong>: Total apostado a todos los candidatos / Total apostado al candidato<br>
+						<strong>Vigencia</strong>: Las apuestas se cierran el próximo <strong>11 de Agosto 00:00hs</strong> (Argentina)<br>
+						<strong>Pagos</strong>: Se efectuarán en el transcurso de <strong>72hs posterior al escrutinio definitivo</strong></p>
 						<br>
 						<p></p>
 						<br>

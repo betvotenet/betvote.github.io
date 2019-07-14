@@ -5,7 +5,9 @@ function MostrarContenedor(tipo)
 	{
 		case contenedores.CANDIDATOS:
 			template = "<div class='candidatosContainer'>"+
-            	"<div class='title'><b>Candidatos a Presidentes de la Nación</b><br><span class='cluf'><b>APUESTA #BV-AR-002:</b> ¿Quién será el presidente de la República Argentina el 1 de enero de 2020?</span></div>"+
+				"<div class='title'>"+
+				"<p><b>Precandidaturas Nacionales</b></p>"+
+				"<p class='cluf'>APUESTA #BV-AR-002:<br> <strong>¿Quién obtendrá la mayor cantidad de votos como precandidato a presidente en las PASO 2019?</strong></p></div>"+
 				"</div> ";
 			break;
 		/*	

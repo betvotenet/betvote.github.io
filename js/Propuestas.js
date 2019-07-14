@@ -20,5 +20,7 @@ Propuesta("", "", temas.TRANSPORTE, 6, 0),
 Propuesta("", "", temas.TRANSPORTE, 7, 0),
 //
 Propuesta("", "", temas.TRANSPORTE, 8, 0),
+//
+Propuesta("", "", temas.TRANSPORTE, 9, 0),
 ];
 }

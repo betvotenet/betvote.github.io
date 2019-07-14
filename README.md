@@ -1,6 +1,6 @@
 # Betvote
 
-Betvote es un experimento que mediante un simple software de lado del cliente conectado mediante API a la tecnologia "Blockchain" intenta analizar el mercado de predicciones electorales de cara a las elecciones presidenciales 2019 en Argentina, a la vez que busca concientizar acerca de la violencia que representa el Estado y su dictadura de mayorías circunstanciales llamada “democracia”.
+Betvote es un experimento que mediante un simple software de lado del cliente conectado mediante API a la tecnologia "Blockchain" intenta analizar el mercado de predicciones electorales de cara a las elecciones presidenciales en Argentina, a la vez que busca concientizar acerca de la violencia que representa el Estado y su dictadura de mayorías circunstanciales llamada “democracia”.
 
 # ¿Cómo apostar?
 
