@@ -11,5 +11,6 @@ function CargarPartidos() {
 		Partido(6, 'NOS', 'img/parties/nos.jpg', '#4986ff', "address_t", ""),
 		Partido(7, 'Patriota', 'img/parties/patriota.jpg', '#0789c7', "address_t", ""),
 		Partido(8, 'Partido Aut. Nacional', 'img/parties/partidoautnacional.jpg', '#000000', "address_t", ""),
+		Partido(9, 'Movimiento Acción Vecinal', 'img/parties/movimientodeaccionvecinal.jpg', '#187f34', "address_t", ""),
 	];
 }

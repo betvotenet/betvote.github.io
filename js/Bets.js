@@ -1,21 +1,13 @@
 CargarCandidatos();
 // START ADDRESSES
 var address=[];
-address[0] = candidatos[0].address; // FERNANDEZ
-address[1] = candidatos[1].address; // MACRI
-address[2] = candidatos[2].address; // LAVAGNA
-address[3] = candidatos[3].address; // DEL CANO 
-address[4] = candidatos[4].address; // Castiñeira
-address[5] = candidatos[5].address; // ESPERT
-address[6] = candidatos[6].address; // CENTURION
-address[7] = candidatos[7].address; // BIONDINI
-address[8] = candidatos[8].address; // FERIS
-
-// END ADDRESSES
-
 // START BETS
 var bet_html = [];
-bet_html[0] = bet_html[1] = bet_html[2] = bet_html[3] = bet_html[4] = bet_html[5] = bet_html[6] = bet_html[7] = bet_html[8] = "";
+candidatos.forEach((candidato)=>{
+	address.push(candidato.address);
+	bet_html.push("");
+});
+// END ADDRESSES
 // END BETS
 
 var addresses_query = address.join(",");
@@ -50,10 +42,10 @@ function api_callback(response) {
 
 	address.forEach((addr,index)=>{
 		$(".bet"+address[index]).html(bet_html[index]);
-		$(".balance"+address[index]).html(balance[index]/100000+" mBTC <br>vs<br> "+(total_balance_candidates-balance[index])/100000+" mBTC");
+		$(".balance"+address[index]).html(balance[index]/100000000+" BTC <br>vs<br> "+(total_balance_candidates-balance[index])/100000000+" BTC");
 	});
 
-	$(".candidatosContainer div.title").after("<div><strong>Pozo total: "+total_balance_candidates/100000+" mBTC</strong></div>")
+	$(".candidatosContainer div.title").after("<div><strong>Pozo total: "+total_balance_candidates/100000000+" BTC</strong></div>")
 }
 
 api_promise = null;
